@@ -15,16 +15,20 @@ function getOutstandingByInvoice(invoice) {
   );
 }
 
-function printOwing(invoice) {
-  invoice.outstanding = getOutstandingByInvoice(invoice);
-
-  // record due date
+function getNext30Day() {
   const today = new Date();
-  invoice.dueDate = new Date(
+  return new Date(
     today.getFullYear(),
     today.getMonth(),
     today.getDate() + 30
   );
+}
+
+function printOwing(invoice) {
+  invoice.outstanding = getOutstandingByInvoice(invoice);
+
+  // record due date
+  invoice.dueDate = getNext30Day();
 
   return printFormat(invoice);
 }
