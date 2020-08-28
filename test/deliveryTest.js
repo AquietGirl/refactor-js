@@ -67,3 +67,63 @@ deliveryTest("deliveryDate5.AnOrder is ME and isRush", (t) => {
     // then
     t.is(result, 4)
 });
+
+deliveryTest("deliveryDate6.AnOrder is MA and isNotRush", (t) => {
+    //given
+    anOrder.deliveryState = "MA";
+    const isRush = false;
+
+    // when
+    const result = deliveryDate(anOrder, isRush)
+
+    // then
+    t.is(result, 4)
+});
+
+deliveryTest("deliveryDate7.AnOrder is CT and isNotRush", (t) => {
+    //given
+    anOrder.deliveryState = "CT";
+    const isRush = false;
+
+    // when
+    const result = deliveryDate(anOrder, isRush)
+
+    // then
+    t.is(result, 4)
+});
+
+deliveryTest("deliveryDate8.AnOrder is NY and isNotRush", (t) => {
+    //given
+    anOrder.deliveryState = "NY";
+    const isRush = false;
+
+    // when
+    const result = deliveryDate(anOrder, isRush)
+
+    // then
+    t.is(result, 4)
+});
+
+deliveryTest("deliveryDate9.AnOrder is NH and isNotRush", (t) => {
+    //given
+    anOrder.deliveryState = "NH";
+    const isRush = false;
+
+    // when
+    const result = deliveryDate(anOrder, isRush)
+
+    // then
+    t.is(result, 5)
+});
+
+deliveryTest("deliveryDate10.AnOrder is ME and isNotRush", (t) => {
+    //given
+    anOrder.deliveryState = "ME";
+    const isRush = false;
+
+    // when
+    const result = deliveryDate(anOrder, isRush)
+
+    // then
+    t.is(result, 5)
+});
