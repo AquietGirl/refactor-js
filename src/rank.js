@@ -4,10 +4,7 @@ function voyageRisk(voyage) {
   let result = 1;
   result += calculateResultByLength(voyage.length, 4, 2);
   result += calculateResultByLength(voyage.length, 8, voyage.length - 8);
-
-  if (zones.includes(voyage.zone)) {
-    result += 4;
-  }
+  result += calculateResultByCondition(() => zones.includes(voyage.zone), 4)
   return Math.max(result, 0);
 }
 
@@ -19,21 +16,21 @@ function calculateResultByLength(longLength, length, result) {
   return longLength > length ? result : 0;
 }
 
+function calculateResultByCondition(condition, result) {
+  return condition() ? result : 0;
+}
+
 function captainHistoryRisk(voyage, history) {
   let result = 1;
   result += calculateResultByLength(5, history.length, 4);
   result += history.filter((v) => v.profit < 0).length;
-  if (hasChina(voyage, history)) {
-    result -= 2;
-  }
+  result += calculateResultByCondition(() => hasChina(voyage, history), -2);
   return Math.max(result, 0);
 }
 
 function voyageProfitFactor(voyage, history) {
   let result = 2;
-  if (zones.includes(voyage.zone)) {
-    result += 1;
-  }
+  result += calculateResultByCondition(() => zones.includes(voyage.zone), 1);
   if (hasChina(voyage, history)) {
     result += 3;
     result += calculateResultByLength(history.length, 10, 1);
