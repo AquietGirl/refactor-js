@@ -55,3 +55,15 @@ deliveryTest("deliveryDate4.AnOrder is NH and isRush", (t) => {
     // then
     t.is(result, 3)
 });
+
+deliveryTest("deliveryDate5.AnOrder is ME and isRush", (t) => {
+    //given
+    anOrder.deliveryState = "ME";
+    const isRush = true;
+
+    // when
+    const result = deliveryDate(anOrder, isRush)
+
+    // then
+    t.is(result, 4)
+});
