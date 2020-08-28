@@ -2,8 +2,8 @@ const zones = ["china", "east-indies"];
 
 function voyageRisk(voyage) {
   let result = 1;
-  result += calculateResultByLength(voyage, 4, 2);
-  result += calculateResultByLength(voyage, 8, voyage.length - 8);
+  result += calculateResultByLength(voyage.length, 4, 2);
+  result += calculateResultByLength(voyage.length, 8, voyage.length - 8);
 
   if (zones.includes(voyage.zone)) {
     result += 4;
@@ -15,15 +15,13 @@ function hasChina(voyage, history) {
   return voyage.zone === zones[0] && history.some((v) => zones[0] === v.zone);
 }
 
-function calculateResultByLength(obj, length, result) {
-  return obj.length > length ? result : 0;
+function calculateResultByLength(longLength, length, result) {
+  return longLength > length ? result : 0;
 }
 
 function captainHistoryRisk(voyage, history) {
   let result = 1;
-  if (history.length < 5) {
-    result += 4;
-  }
+  result += calculateResultByLength(5, history.length, 4);
   result += history.filter((v) => v.profit < 0).length;
   if (hasChina(voyage, history)) {
     result -= 2;
@@ -38,9 +36,9 @@ function voyageProfitFactor(voyage, history) {
   }
   if (hasChina(voyage, history)) {
     result += 3;
-    result += calculateResultByLength(history, 10, 1);
-    result += calculateResultByLength(voyage, 12, 1);
-    result += calculateResultByLength(voyage, 18, -1);
+    result += calculateResultByLength(history.length, 10, 1);
+    result += calculateResultByLength(voyage.length, 12, 1);
+    result += calculateResultByLength(voyage.length, 18, -1);
   } else {
     result += calculateResultByLength(history, 8, 1);
     result += calculateResultByLength(voyage, 14, -1);
@@ -56,10 +54,7 @@ function rating(voyage, history) {
 }
 
 function getRank(vpf, vr, chr) {
-  if (vpf * 3 > vr + chr * 2) {
-    return "A";
-  }
-  return "B";
+  return vpf * 3 > vr + chr * 2 ? "A" : "B";
 }
 
 module.exports = {
