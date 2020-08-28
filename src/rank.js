@@ -4,7 +4,7 @@ function voyageRisk(voyage) {
   let result = 1;
   result += calculateResultByLength(voyage, 4, 2);
   result += calculateResultByLength(voyage, 8, voyage.length - 8);
-  
+
   if (zones.includes(voyage.zone)) {
     result += 4;
   }
@@ -52,11 +52,14 @@ function rating(voyage, history) {
   const vpf = voyageProfitFactor(voyage, history);
   const vr = voyageRisk(voyage);
   const chr = captainHistoryRisk(voyage, history);
+  return getRank(vpf, vr, chr);
+}
+
+function getRank(vpf, vr, chr) {
   if (vpf * 3 > vr + chr * 2) {
     return "A";
-  } else {
-    return "B";
   }
+  return "B";
 }
 
 module.exports = {
