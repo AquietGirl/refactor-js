@@ -1,20 +1,23 @@
 function printFormat(data) {
-  return "***********************\n" +
-  "**** Customer Owes ****\n" +
-  "***********************\n" +
-  `name: ${data.customer}\n` +
+  return (
+    "***********************\n" +
+    "**** Customer Owes ****\n" +
+    "***********************\n" +
+    `name: ${data.customer}\n` +
     `amount: ${data.outstanding}\n` +
-    `amount: ${data.dueDate.toLocaleDateString()}`;
+    `amount: ${data.dueDate.toLocaleDateString()}`
+  );
+}
+
+function getOutstandingByInvoice(invoice) {
+  return invoice.borderSpacing.reduce(
+    (total, oldValue) => (total += oldValue.amount), 0
+  );
 }
 
 function printOwing(invoice) {
-  let outstanding = 0;
-  
-  for (const o of invoice.borderSpacing) {
-    outstanding += o.amount;
-  }
+  invoice.outstanding = getOutstandingByInvoice(invoice);
 
-  invoice.outstanding = outstanding;
   // record due date
   const today = new Date();
   invoice.dueDate = new Date(
