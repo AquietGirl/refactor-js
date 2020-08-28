@@ -4,12 +4,14 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "ava"
+    "test": "ava",
+    "coverage": "nyc --show-process-tree npm test"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "nyc": "^15.1.0"
   },
   "devDependencies": {
     "ava": "^0.25.0"
