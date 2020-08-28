@@ -124,7 +124,7 @@ rankTest(
     const result = rating(voyage, history);
 
     //then
-    t.is("B", result);
+    t.is(result, "B");
   }
 );
 
@@ -159,7 +159,7 @@ rankTest(
     const result = rating(voyage, history);
 
     //then
-    t.is("B", result);
+    t.is(result, "B");
   }
 );
 
@@ -194,7 +194,7 @@ rankTest(
     const result = rating(voyage, history);
 
     //then
-    t.is("B", result);
+    t.is(result, "B");
   }
 );
 
@@ -210,7 +210,7 @@ rankTest(
     //when
     const result = rating(voyage, historyL);
     //then
-    t.is("A", result);
+    t.is(result, "A");
   }
 );
 
@@ -226,7 +226,7 @@ rankTest(
     //when
     const result = rating(voyage, historyXL);
     //then
-    t.is("A", result);
+    t.is(result, "A");
   }
 );
 
@@ -242,7 +242,7 @@ rankTest(
     //when
     const result = rating(voyage, historyXL);
     //then
-    t.is("B", result);
+    t.is(result, "B");
   }
 );
 
@@ -258,6 +258,6 @@ rankTest(
     //when
     const result = rating(voyage, historyXL);
     //then
-    t.is("B", result);
+    t.is(result, "B");
   }
 );
