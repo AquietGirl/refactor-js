@@ -245,3 +245,19 @@ rankTest(
     t.is("B", result);
   }
 );
+
+rankTest(
+  "rankTest6.Voyage length is 20 and zone is east-indies. History length is 12",
+  (t) => {
+    //given
+    const voyage = {
+      zone: "east-indies",
+      length: 20,
+    };
+
+    //when
+    const result = rating(voyage, historyXL);
+    //then
+    t.is("B", result);
+  }
+);
